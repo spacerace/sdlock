@@ -1,0 +1,7 @@
+to start sdlock use:
+
+./sdlock 1024 600 16 400 400 test
+
+options are:
+
+./sdlock screen_x screen_y screen_bpp text_x text_y password
