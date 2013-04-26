@@ -1,9 +1,19 @@
-to start sdlock use:
+to start sdlock use "sdlock-launcher.sh"-script.
+Inside this script you can set up your screen resolution as well as your
+password and a few other things.
+Simply open with a text editor.
 
-./sdlock 1024 600 16 400 400 test
+Three files:
+sdlock
+sdlock.png
+sdlock-launcher.sh
 
-The file sdlock.png needs to be placed as ~/.sdlock.png
+should be placed into your home folder as follows:
 
-options are:
+~/.sdlock
+~/.sdlock.png
+~/.sdlock-launcher.png
 
-./sdlock screen_x screen_y screen_bpp text_x text_y password
+For this job to be done you can use the sdlock-install.sh script.
+
+Now you can start sdlock via ~/.sdlock-launcher.sh

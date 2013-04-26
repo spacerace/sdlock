@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
     	
 	SDL_Init(SDL_INIT_VIDEO);
 	surface = SDL_SetVideoMode(atoi(argv[1]), atoi(argv[2]), atoi(argv[3]), 
-			SDL_HWSURFACE | SDL_DOUBLEBUF //| SDL_FULLSCREEN
+			SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN
 	);
 	text_x = atoi(argv[4]);
 	text_y = atoi(argv[5]);
