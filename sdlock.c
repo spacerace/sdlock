@@ -1,3 +1,9 @@
+/* 2012,2013 Nils Stec <nils.stec@gmail.com> 
+ *
+ * v0.1 - added Xlib support to get screen resolution
+ *
+ * */
+
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -7,6 +13,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_gfxPrimitives.h>
+#include <X11/Xlib.h>
 
 uint32_t x, y, count = 0;
 char inbuf[256], pass[256];
@@ -55,6 +62,23 @@ int format_time(char *buffer) {
 	return 0;
 }
 
+int x11_screenres(int *x, int *y) {
+	Display* pdsp = XOpenDisplay(NULL);
+	Window wid = DefaultRootWindow(pdsp);
+	
+	XWindowAttributes xwAttr;
+	XGetWindowAttributes(pdsp,wid,&xwAttr);
+
+	*x = xwAttr.width;
+	*y = xwAttr.height;
+
+	XCloseDisplay(pdsp);
+
+	return 0;
+}
+
+
+
 int main(int argc, char **argv) {
 	SDL_Surface *surface;
 	char buf[256];
@@ -62,14 +86,22 @@ int main(int argc, char **argv) {
 	int text_x, text_y;
 	int usecs = 0;
     	
+	int x11win_width;
+	int x11win_height;
+
+	x11_screenres(&x11win_width,&x11win_height);
+
+//	printf("%d %d\n", x11win_width, x11win_height);
+
 	SDL_Init(SDL_INIT_VIDEO);
-	surface = SDL_SetVideoMode(atoi(argv[1]), atoi(argv[2]), atoi(argv[3]), 
+	surface = SDL_SetVideoMode(x11win_width, x11win_height, 16, 
 			SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN
 	);
-	text_x = atoi(argv[4]);
-	text_y = atoi(argv[5]);
 
-	sprintf(pass, "%s", argv[6]);		// get password from command line	
+	text_x = x11win_width - (31*8);
+	text_y = x11win_height - 15;
+
+	sprintf(pass, "%s", argv[1]);		// get password from cmd line	
 	// TODO change to hash instead of plain text password !!!!
 
 	sprintf(buf, "%s/.sdlock.png", getenv("HOME"));
