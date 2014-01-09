@@ -1,19 +1,29 @@
-to start sdlock use "sdlock-launcher.sh"-script.
-Inside this script you can set up your screen resolution as well as your
-password and a few other things.
-Simply open with a text editor.
+**overview**
+	to start sdlock use "sdlock-launcher.sh"-script.
+	Inside this script you can set up your password.
+	Simply open with a text editor.
 
-Three files:
-sdlock
-sdlock.png
-sdlock-launcher.sh
+	Three files
+		 > sdlock
+		 > sdlock.png
+		 > sdlock-launcher.sh
+	should be placed into your home folder as follows:
 
-should be placed into your home folder as follows:
+	~/.sdlock
+	~/.sdlock.png
+	~/.sdlock-launcher.png
 
-~/.sdlock
-~/.sdlock.png
-~/.sdlock-launcher.png
+	For this job to be done you can use the sdlock-install.sh script.
+	It copies these three files and sets neccessary executable-bits.
 
-For this job to be done you can use the sdlock-install.sh script.
+	Now you can start sdlock via ~/.sdlock-launcher.sh
 
-Now you can start sdlock via ~/.sdlock-launcher.sh
+**acpid**
+
+	For use with acpid you need to add it to defaults.sh.
+
+	Either use it with hardware buttons usable with acpid or with
+	lid events.
+
+	An example-commandline for invoking sdlock from defaults.sh would be:
+	$ su - username -c 'DISPLAY=:0 /home/username/.sdlock-launcher.sh' &
