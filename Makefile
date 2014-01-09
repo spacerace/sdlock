@@ -2,7 +2,7 @@ CC=gcc
 WARN=-Wall -Werror
 INCLUDE=-I./
 CFLAGS=-O2 -pipe
-LDFLAGS=-lSDL -lSDL_gfx -lSDL_image
+LDFLAGS=-lSDL -lSDL_gfx -lSDL_image -lX11
 SRC=sdlock.c
 OUT=sdlock
 
